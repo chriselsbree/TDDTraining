@@ -22,30 +22,31 @@ public class TriangleTest
     [TestMethod]
     public void TriangleHasPerimeter()
     {
-        //Create triangle with points (1,1) , (5,1) and (1,4)
         var triangle = new Triangle(new Coordinate(1, 1), new Coordinate(5, 1), new Coordinate(1, 4));
-
-        //Verify triagngle has perimeter of 12
         Assert.AreEqual(12,triangle.Perimeter);
     }
-}
 
-public class Triangle
-{
-    public Triangle(Coordinate first, Coordinate second, Coordinate third)
+    [TestMethod]
+    public void PointHasSides()
     {
-        Points = new[] { first, second, third };
+        //Create new triangle that has (0,0) (3,0) and (0,4)
+        //find sides that touch (0,0)
+        //Verify that sides a and b touch (0,0)
+        var triangle = new Triangle(new Coordinate(0, 0), new Coordinate(3, 0), new Coordinate(0, 4));
+        var sides = triangle.FindSides(new Coordinate(0, 0));
+        Approvals.VerifyAll("Sides", sides, "Side");
     }
 
-    public Coordinate[] Points { get; }
-
-    public IEnumerable<Line> Sides
+    [TestMethod]
+    public void PointOppositeSide()
     {
-        get
-        {
-            return new Line[] { new Line(Points[0], Points[1]), 
-                                 new Line(Points[1], Points[2]), 
-                                 new Line(Points[2], Points[0])};
-        }
+        //create a new triangle that has (0,0), (3,0), (0,4)
+        //find the side that is opposite to the point (0,0)
+        //verify that the point is opposite the side
+        var triangle = new Triangle(new Coordinate(0, 0), new Coordinate(3, 0), new Coordinate(0, 4));
+        var side = triangle.FindOppositeSide(new Coordinate(0, 0));
+        Approvals.Verify(side);
+
+
     }
 }
