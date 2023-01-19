@@ -29,9 +29,6 @@ public class TriangleTest
     [TestMethod]
     public void PointHasSides()
     {
-        //Create new triangle that has (0,0) (3,0) and (0,4)
-        //find sides that touch (0,0)
-        //Verify that sides a and b touch (0,0)
         var triangle = new Triangle(new Coordinate(0, 0), new Coordinate(3, 0), new Coordinate(0, 4));
         var sides = triangle.FindSides(new Coordinate(0, 0));
         Approvals.VerifyAll("Sides", sides, "Side");
@@ -40,13 +37,45 @@ public class TriangleTest
     [TestMethod]
     public void PointOppositeSide()
     {
-        //create a new triangle that has (0,0), (3,0), (0,4)
-        //find the side that is opposite to the point (0,0)
-        //verify that the point is opposite the side
         var triangle = new Triangle(new Coordinate(0, 0), new Coordinate(3, 0), new Coordinate(0, 4));
         var side = triangle.FindOppositeSide(new Coordinate(0, 0));
         Approvals.Verify(side);
+    }
 
+    [TestMethod] 
+    public void CornerHasAngle()
+    {
+        var triangle = new Triangle(new Coordinate(0, 0), new Coordinate(0, 3), new Coordinate(4, 0));
+        double angle = triangle.GetAngleAt(new Coordinate(0, 0));
+        Assert.AreEqual(90,angle);
+        
+    }
 
+    [TestMethod]
+    public void TriangleHasThreeAngles()
+    {
+        var triangle = new Triangle(new Coordinate(0, 0), new Coordinate(0, 4), new Coordinate(4, 0));
+        var angles = triangle.Angles;
+        Approvals.VerifyAll("Angles", angles, "Angle");
+
+    }
+
+    [TestMethod]
+    public void IsRightTriangle()
+    {
+        // Create a triangle with coordinates (0,0), (0,4), and (4,0)
+        var triangle = new Triangle(new Coordinate(0, 0), new Coordinate(0, 4), new Coordinate(4, 0));
+
+        // Verify it is a right triangle
+        Assert.IsTrue(triangle.IsRightTriangle());
+    }
+
+    [TestMethod]
+    public void IsNotRightTriangle()
+    {
+        //Create triangle (0,0) (7,0) (5,3)
+        var triangle = new Triangle(new Coordinate(0, 0), new Coordinate(7, 0), new Coordinate(5, 3));
+        Assert.IsFalse(triangle.IsRightTriangle());
+        //Verify it is not a right triangle
     }
 }

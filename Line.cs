@@ -39,5 +39,23 @@ public class Line
         return $"({x1},{y1}) to ({x2},{y2})";
     }
 
+    protected bool Equals(Line other)
+    {
+        return x1 == other.x1 && y2 == other.y2 && y1 == other.y1 && x2 == other.x2;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (ReferenceEquals(null, obj)) return false;
+        if (ReferenceEquals(this, obj)) return true;
+        if (obj.GetType() != this.GetType()) return false;
+        return Equals((Line)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(x1, y2, y1, x2);
+    }
+
     public Coordinate[] Endpoints => new []{new Coordinate(x1,y1),new Coordinate(x2,y2)};
 }
