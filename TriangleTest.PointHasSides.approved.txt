@@ -1,4 +1,4 @@
-﻿Sides
+﻿Sides containing endpoint (0,0) for Triangle: (0,0), (3,0), (0,4)
 
 Side[0] = (0,0) to (3,0)
 Side[1] = (0,4) to (0,0)

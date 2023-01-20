@@ -62,4 +62,9 @@ public class Triangle
     {
         return Math.Abs(value1 - value2) <= delta;
     }
+
+    public override string ToString()
+    {
+        return $"Triangle: {Points[0]}, {Points[1]}, {Points[2]}";
+    }
 }

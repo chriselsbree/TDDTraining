@@ -1,4 +1,4 @@
-﻿Sides
+﻿Sides of Triangle: (1,1), (1,4), (6,1)
 
 Lines[0] = (1,1) to (1,4)
 Lines[1] = (1,4) to (6,1)
